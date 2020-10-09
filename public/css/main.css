@@ -1,0 +1,60 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+body {
+  background-color: gray;
+}
+
+div {
+
+}
+
+#topDiv {
+  width: 100%;
+  background-color: red;
+  padding-bottom: 10px;
+}
+
+#topLeftDiv {
+  width: 50%;
+  float: left;
+}
+
+#topRightDiv {
+  padding-top: 10px;
+  padding-right: 5px;
+  margin-left: 50%;
+}
+
+#bottomDiv {
+  width: 100%;
+  float: left;
+  background-color: blue;
+}
+
+#headerDiv {
+  padding-left: 5px;
+}
+
+#currentUserDiv {
+  font-size: 12px;
+  float: right;
+  text-align: right;
+}
+
+#searchBarDiv {
+  font-size: 12px;
+  text-align: right;
+}
+
+#searchBar {
+  width: 100%;
+}
+
+

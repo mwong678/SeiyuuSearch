@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title= title
+    link(rel='stylesheet', href='/css/main.css')
+  body
+    div#container
+      div#topDiv
+        div#topLeftDiv
+          div#headerDiv
+            h1 Seiyuu Search
+        div#topRightDiv
+          div#currentUserDiv
+            p#currentUserText
+              | No Animelist Set. Click 
+              a#setUser(href='#') here
+              |  to set
+          div#searchBarDiv
+            input#searchBar(type='search' autocomplete='off' spellcheck='false' autofocus='' placeholder='Search for a character/anime')
+      div#bottomDiv
+        block content
+  script(src="/js/jquery-3.5.1.min.js")
+  script(src="/js/ss.js")
+  
