@@ -15,7 +15,7 @@ const search = async (query) => {
     };
 
     const characterParameters = {
-        url: ENDPOINT + SEARCH + `${CHARACTER}?q=${query}&limit=25`,
+        url: ENDPOINT + SEARCH + `${CHARACTER}?q=${query}`,
         json: true
     };
 
@@ -37,12 +37,13 @@ const search = async (query) => {
 
         for (var x = 0;x < characterResult.length;x++){
             const currCharacter = characterResult[x];
-            results.push({ url: currCharacter.url, 
-                           name: currCharacter.name,
-                           image_url: currCharacter.image_url,
-                           mal_id: currCharacter.mal_id,
-                           type: "character"
-                         });
+            if (currCharacter.anime.length > 0)
+                results.push({ url: currCharacter.url, 
+                            name: currCharacter.name,
+                            image_url: currCharacter.image_url,
+                            mal_id: currCharacter.mal_id,
+                            type: "character"
+                            });
         }
         
         var sortedResults = tools.sort(query, results);

@@ -1,16 +1,20 @@
 const levenshtein = require('js-levenshtein');
 
 function sort(query, array){
+    query = query.toLowerCase();
     return array.sort(function(a, b){
-       if (a.name.indexOf(query) > -1){
-            if (b.name.indexOf(query) > -1){
-                return levenshtein(a.name, query) - levenshtein(b.name, query);
+       var aName = a.name.toLowerCase();
+       var bName = b.name.toLowerCase();
+
+       if (aName.indexOf(query) > -1){
+            if (bName.indexOf(query) > -1){
+                return levenshtein(aName, query) - levenshtein(bName, query);
             }else{
                 return -1;
             }
        }else{
-            if (b.name.indexOf(query) == -1){
-                return levenshtein(a.name, query) - levenshtein(b.name, query);
+            if (bName.indexOf(query) == -1){
+                return levenshtein(aName, query) - levenshtein(bName, query);
             }else{
                 return 1;
             }
