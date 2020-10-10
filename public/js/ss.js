@@ -31,17 +31,40 @@ function getCookie(cname) {
 function searchAPI(query){
     $.ajax({
         type: 'POST',
-        url: '/',
+        url: '/search',
         data: {
           query: query
         },
         dataType: 'json',
         success: function(data) {
-            console.log(data)
+            $("#searchResultsList").empty();
+            const searchResults = data.result;
+            if (searchResults != null) {
+              for (var x = 0;x < searchResults.length; x++){
+                const currResult = searchResults[x];
+                const name = currResult.name;
+                const mal_id = currResult.mal_id;
+                const type = currResult.type;
+                const image_url = currResult.image_url;
+                $("#searchResultsList").append(`<li class=searchResultRow>
+                                                  <div class=searchResultDiv>
+                                                    <img src=${image_url} id=${type}-${mal_id} class=imageUrl>
+                                                      <span class=imageName>${name}</span>
+                                                  </div>
+                                                </li>`
+                                              );
+              }
+
+              $(".imageUrl").click(function(e) {
+                var searchParameters = $(this).attr('id');
+                console.log(searchParameters);
+              });
+            } else {
+              //empty
+            }
         }
       });
-} 
-
+}
 
 $(document).ready(function() {
 
@@ -50,12 +73,12 @@ $(document).ready(function() {
     if (usernameCookie.length > 0){
         $("#currentUserText").empty();
         $("#currentUserText").append("Using ");
-        $("#currentUserText").append("<a id=\"setUser\" href=\"#\">" + usernameCookie + "</a>");
+        $("#currentUserText").append(`<a id=setUser href=#>${usernameCookie}</a>`);
         $("#currentUserText").append("'s list");
     }else{
         $("#currentUserText").empty();
         $("#currentUserText").append("No Animelist Set. Click ");
-        $("#currentUserText").append("<a id=\"setUser\" href=\"#\">here</a>");
+        $("#currentUserText").append(`<a id=setUser href=#>here</a>`);
         $("#currentUserText").append(" to set");
     }
 
@@ -68,7 +91,7 @@ $(document).ready(function() {
             }
             $("#currentUserText").empty();
             $("#currentUserText").append("Using ");
-            $("#currentUserText").append("<a id=\"setUser\" href=\"#\">" + namePrompt + "</a>");
+            $("#currentUserText").append(`<a id=setUser href=#>${namePrompt}</a>`);
             $("#currentUserText").append("'s list");
             setCookie(COOKIE_USERNAME, namePrompt, 1);
             location.reload(true);
@@ -77,6 +100,8 @@ $(document).ready(function() {
             if (newName == null || newName.length == 0){
                 return;
             }
+            $("#currentUserText").empty();
+            $("#setUser").text(newName);
             setCookie(COOKIE_USERNAME, newName, 1);
             location.reload(true);
         }
@@ -84,7 +109,7 @@ $(document).ready(function() {
 
     $("#searchBar").on('input', function() {
         var query = $(this).val();
-        if (query.length > 3){
+        if (query.length >= 3){
             searchAPI(query);
         }
     });

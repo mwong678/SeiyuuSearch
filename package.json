@@ -13,6 +13,7 @@
     "js-levenshtein": "^1.1.6",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
+    "querystring": "^0.2.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
   }

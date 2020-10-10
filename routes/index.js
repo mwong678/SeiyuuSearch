@@ -9,6 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 /* search api route */
-router.post('/', search.searchJinkan);
+router.post('/search', search.searchJinkan);
 
 module.exports = router;

@@ -34,8 +34,8 @@ div {
 
 #bottomDiv {
   width: 100%;
-  float: left;
-  background-color: blue;
+  /* float: left; */
+  background-color: green;
 }
 
 #headerDiv {
@@ -58,3 +58,36 @@ div {
 }
 
 
+/* SEARCH RESULTS CSS */
+
+#searchContainer {
+  text-align: center;
+}
+
+#searchResultsList{
+  padding: 10px 0px 0px 0px;
+  list-style-type: none;
+}
+
+.searchResultRow {
+   display: inline;
+}
+
+.searchResultDiv {
+  padding: 5px 0px 0px 0px;
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  width: 120px;
+}
+
+.imageName {
+  display: block;
+}
+
+img.imageUrl{
+  width: 75px;
+  height: 110px;
+}
+
+/* SEARCH RESULTS CSS */
