@@ -77,6 +77,7 @@ async function highlightTitles(data){
 }
 
 function populateVoiceActorResults(name, data){
+  var userList = {};
   const voiceActorResults = data.result;
   if (voiceActorResults != null) {
     const username = getCookie(COOKIE_USERNAME),
@@ -84,6 +85,20 @@ function populateVoiceActorResults(name, data){
 
     showContainer(PERSON);
     $("#personResultsList").empty();
+
+    if (username.length > 0){
+      $.ajax({
+          type: 'GET',
+          url: `/api/animelist/${username}`,
+          dataType: 'json',
+          success: function(data) {
+            if (data != null){
+              userList = data.result;
+            } //highlightTitles(data);
+          }
+        });
+    }
+
     $("#personTitle").text(name);
 
     for (var x = 0;x < voiceActingRoles.length; x++){
@@ -97,9 +112,10 @@ function populateVoiceActorResults(name, data){
             character_mal_id = currCharacterResult.mal_id,
             character_image_url = currCharacterResult.image_url,
             type = PERSON,
-            display_name = `${name} (${type})`;
+            display_name = `${name} (${type})`,
+            rowColor = (userList[anime_mal_id] && userList[anime_mal_id] != 6) ? "#FFD95C" : "#FFFFFF";
 
-      $("#personResultsList").append(`<li class=personResultRow id=${anime_mal_id}>
+      $("#personResultsList").append(`<li class=personResultRow id=${anime_mal_id} style=background-color: ${rowColor};>
                                       <div class=personResultDiv >
                                         <div class=voiceActorPictureDiv>
                                           <img src=${anime_image_url} class=animeCharacterImageUrl>
@@ -114,17 +130,6 @@ function populateVoiceActorResults(name, data){
                                       </div>
                                     </li>`);
 
-    }
-
-    if (username.length > 0){
-      $.ajax({
-          type: 'GET',
-          url: `/api/animelist/${username}`,
-          dataType: 'json',
-          success: function(data) {
-            highlightTitles(data);
-          }
-        });
     }
   }
 }
