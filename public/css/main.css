@@ -111,6 +111,18 @@ h2 {
   list-style-type: none;
 }
 
+.animeResultRow {
+  margin: 0px 0px 0px 0px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.animeResultRow:last-child {
+  margin: 0px 0px 0px 0px;
+  border: 1px solid black;
+}
+
 .characterInfoDiv{
   display: inline-block;
   vertical-align: top;
@@ -141,8 +153,16 @@ img.characterImageUrl{
   list-style-type: none;
 }
 
-.characterResultRow{
-  margin: 10px 0px 0px 0px;
+.characterResultRow {
+  margin: 0px 0px 0px 0px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.characterResultRow:last-child {
+  margin: 0px 0px 0px 0px;
+  border: 1px solid black;
 }
 
 .voiceActorInfoDiv{
@@ -176,7 +196,15 @@ img.voiceActorImageUrl{
 }
 
 .personResultRow {
-  margin: 10px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.personResultRow:last-child {
+  margin: 0px 0px 0px 0px;
+  border: 1px solid black;
 }
 
 
@@ -206,22 +234,25 @@ img.voiceActorImageUrl{
 }
 
 img.animeCharacterImageUrl{
-  width: 42px;
-  height: 62px;
+  width: 60px;
+  height: 88px;
 }
+/* 42, 62 */
+/* 60, 88 */
 
 .voiceActorPictureDiv {
-  width: 42px;
+  width: 60px;
+}
+
+.personResultDiv {
+  height: 88px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .voiceActorTextDiv{
   flex-grow: 1;
 }
 
-.personResultDiv {
-  height: 62px;
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-}
 /* VOICE ACTOR RESULTS CSS */
