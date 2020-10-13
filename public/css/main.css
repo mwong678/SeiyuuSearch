@@ -8,7 +8,9 @@ h1 {
 }
 
 body {
-  background-color: gray;
+  font-family: 'Open Sans','Roboto', sans-serif;
+  background-color: #FFFFFF;
+  margin: 0 auto 0 auto;
 }
 
 div {
@@ -17,8 +19,9 @@ div {
 
 #topDiv {
   width: 100%;
-  background-color: red;
   padding-bottom: 10px;
+  background-color: #79DBF6;
+  overflow: hidden;
 }
 
 #topLeftDiv {
@@ -27,19 +30,20 @@ div {
 }
 
 #topRightDiv {
-  padding-top: 10px;
+  padding-top: 7px;
   padding-right: 5px;
   margin-left: 50%;
 }
 
 #bottomDiv {
   width: 100%;
-  /* float: left; */
-  background-color: green;
+  /* float: left;  98AFB5  2ECC71*/
+  background-color: #FFFFFF;
 }
 
 #headerDiv {
   padding-left: 5px;
+
 }
 
 #currentUserDiv {
@@ -57,7 +61,6 @@ div {
   width: 100%;
 }
 
-
 /* SEARCH RESULTS CSS */
 
 #searchContainer {
@@ -74,7 +77,7 @@ div {
 }
 
 .searchResultDiv {
-  padding: 5px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
   vertical-align: top;
   display: inline-block;
   text-align: center;
@@ -82,6 +85,7 @@ div {
 }
 
 .imageName {
+  font-size: 16px;
   display: block;
 }
 
@@ -91,3 +95,133 @@ img.imageUrl{
 }
 
 /* SEARCH RESULTS CSS */
+
+/* ANIME RESULTS CSS */
+
+h2 {
+  font-size: 20px;
+  text-align: center;
+}
+
+#animeContainer {
+}
+
+#animeResultsList {
+  padding: 10px 0px 0px 0px;
+  list-style-type: none;
+}
+
+.characterInfoDiv{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.characterImageName {
+  font-size: 16px;
+}
+
+.characterImageRole {
+  font-size: 14px;
+  display: block;
+}
+
+img.characterImageUrl{
+  width: 75px;
+  height: 110px;
+}
+/* ANIME RESULTS CSS */
+
+/* CHARACTER RESULTS CSS */
+
+#characterContainer {
+}
+
+#characterResultsList {
+  padding: 10px 0px 0px 0px;
+  list-style-type: none;
+}
+
+.characterResultRow{
+  margin: 10px 0px 0px 0px;
+}
+
+.voiceActorInfoDiv{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.voiceActorImageName {
+  font-size: 16px;
+}
+
+.voiceActorImageLanguage {
+  font-size: 14px;
+  display: block;
+}
+
+img.voiceActorImageUrl{
+  width: 75px;
+  height: 110px;
+}
+
+
+/* CHARACTER RESULTS CSS */
+
+/* VOICE ACTOR RESULTS CSS */
+
+
+#personResultsList {
+  padding:0px 0px 0px 0px;
+  list-style-type: none;
+}
+
+.personResultRow {
+  margin: 10px 0px 0px 0px;
+}
+
+
+.voiceActorAnimeImageName {
+  font-size: 10px;
+  padding-left: 5px;
+  display: block;
+  float: left;
+  text-align: left;
+  width: 10em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.voiceActorCharacterImageName {
+  padding-right: 5px;
+  font-size: 10px;
+  display: block;
+  float: right;
+  text-align: right;
+  width: 10em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+img.animeCharacterImageUrl{
+  width: 42px;
+  height: 62px;
+}
+
+.voiceActorPictureDiv {
+  width: 42px;
+}
+
+.voiceActorTextDiv{
+  flex-grow: 1;
+}
+
+.personResultDiv {
+  height: 62px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+/* VOICE ACTOR RESULTS CSS */
