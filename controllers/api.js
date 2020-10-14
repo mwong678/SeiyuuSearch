@@ -61,7 +61,9 @@ const find = async (req, res) => {
 
 const animelist = async (req, res) => {
     const username = req.params.username;
+    start = new Date().getTime();
     const results = await rest.animelist(username);
+    console.log(`Time elapsed: ${new Date().getTime() - start}`);
     res.send({result: results});
 };
 

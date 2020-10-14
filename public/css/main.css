@@ -13,10 +13,6 @@ body {
   margin: 0 auto 0 auto;
 }
 
-div {
-
-}
-
 #topDiv {
   width: 100%;
   padding-bottom: 10px;
@@ -61,6 +57,33 @@ div {
   width: 100%;
 }
 
+#animeContainer {
+  display: none;
+}
+
+#characterContainer {
+  display: none;
+}
+
+#personContainer {
+  display: none;
+}
+
+.titleDiv {
+  width: 100%;
+  height: 48px;
+  text-align: center;
+}
+
+.fa.fa-angle-left.fa-3x {
+  float: left;
+}
+
+h2 {
+  font-size: 20px;
+  padding-top: 10px;
+}
+
 /* SEARCH RESULTS CSS */
 
 #searchContainer {
@@ -98,17 +121,13 @@ img.imageUrl{
 
 /* ANIME RESULTS CSS */
 
-h2 {
-  font-size: 20px;
-  text-align: center;
-}
-
-#animeContainer {
-}
-
 #animeResultsList {
-  padding: 10px 0px 0px 0px;
+  padding:0px 0px 0px 0px;
   list-style-type: none;
+}
+
+.animeResultDiv{
+  height: 110px;
 }
 
 .animeResultRow {
@@ -144,12 +163,12 @@ img.characterImageUrl{
 /* ANIME RESULTS CSS */
 
 /* CHARACTER RESULTS CSS */
-
-#characterContainer {
+.characterResultDiv {
+  height: 110px;
 }
 
 #characterResultsList {
-  padding: 10px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
   list-style-type: none;
 }
 

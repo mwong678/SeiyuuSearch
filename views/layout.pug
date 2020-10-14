@@ -4,6 +4,7 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0')
     title= title
+    script(src='https://kit.fontawesome.com/f80780a917.js' crossorigin='anonymous') 
     link(href='https://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet')
     link(href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap' rel='stylesheet')
     link(rel='stylesheet', href='/css/main.css')
@@ -20,8 +21,9 @@ html(lang='en')
               a#setUser(href='#') here
               |  to set
           div#searchBarDiv
-            input#searchBar(type='search' autocomplete='off' spellcheck='false' placeholder='Search for a character/anime')
+            input#searchBar(type='search' autocorrect="off" autocaptitalize="off" autocomplete='off' spellcheck='false' placeholder='Search for a character/anime')
       div#bottomDiv
-        block content
+        block content     
   script(src="/js/jquery-3.5.1.min.js")
+  script(src="/js/Stack.js")
   script(src="/js/ss.js")

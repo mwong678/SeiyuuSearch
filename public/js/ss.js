@@ -5,6 +5,9 @@ const API_ENDPOINT = "http://172.31.21.133:9000/public/v3/",
       PERSON = "person",
       CHARACTER = "character";
 
+var historyStack = new Stack();
+var userList = {};
+
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -28,12 +31,14 @@ function getCookie(cname) {
     }
     return "";
 }
-/*
-<img src=${image_url} id=${type}-${mal_id} class=imageUrl>
-  <span class=imageName>${name} (${type})</span>
-*/
+
+function snapToTop(){
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 
 function showContainer(name){
+  snapToTop();
   switch (name) {
     case SEARCH:
       $("#searchContainer").show();
@@ -64,20 +69,22 @@ function showContainer(name){
   }
 }
 
-async function highlightTitles(data){
-  const animelistResults = data.result;
-  if (animelistResults != null) {
-    $(".personResultRow").each(function(index) {
-      var mal_id = $(this).attr('id');
-      if (animelistResults[mal_id] && animelistResults[mal_id] != 6){
-        $(this).css("background-color", "#FFD95C");
+async function generateUserList(username){
+  console.log("Constructing User Watch Library...");
+  $.ajax({
+      type: 'GET',
+      url: `/api/animelist/${username}`,
+      dataType: 'json',
+      success: function(data) {
+        if (data != null){
+          console.log("Finished constructing User Watch Library...");
+          userList = data.result;
+        }
       }
     });
-  }
 }
 
 function populateVoiceActorResults(name, data){
-  var userList = {};
   const voiceActorResults = data.result;
   if (voiceActorResults != null) {
     const username = getCookie(COOKIE_USERNAME),
@@ -85,22 +92,7 @@ function populateVoiceActorResults(name, data){
 
     showContainer(PERSON);
     $("#personResultsList").empty();
-
-    if (username.length > 0){
-      $.ajax({
-          type: 'GET',
-          url: `/api/animelist/${username}`,
-          dataType: 'json',
-          success: function(data) {
-            if (data != null){
-              userList = data.result;
-            } //highlightTitles(data);
-          }
-        });
-    }
-
     $("#personTitle").text(name);
-
     for (var x = 0;x < voiceActingRoles.length; x++){
       const currResult = voiceActingRoles[x],
             currAnimeResult = currResult.anime,
@@ -113,9 +105,9 @@ function populateVoiceActorResults(name, data){
             character_image_url = currCharacterResult.image_url,
             type = PERSON,
             display_name = `${name} (${type})`,
-            rowColor = (userList[anime_mal_id] && userList[anime_mal_id] != 6) ? "#FFD95C" : "#FFFFFF";
+            rowColor = (userList[anime_mal_id] && userList[anime_mal_id] != 6) ? "rgb(255, 217, 92)" : "rgb(255, 255, 255)";
 
-      $("#personResultsList").append(`<li class=personResultRow id=${anime_mal_id} style=background-color: ${rowColor};>
+      $("#personResultsList").append(`<li class=personResultRow id=${anime_mal_id} style=\"background-color: ${rowColor};\">
                                       <div class=personResultDiv >
                                         <div class=voiceActorPictureDiv>
                                           <img src=${anime_image_url} class=animeCharacterImageUrl>
@@ -158,11 +150,11 @@ function populateCharacterResults(name, data){
                                           <span class=voiceActorImageLanguage>${language}</span>
                                         </div>
                                       </div>
-                                    </li>`
-                                  );
+                                    </li>`);
     }
 
     $(".voiceActorImageUrl").click(function(e) {
+      historyStack.push(CHARACTER);
       const searchParameters = $(this).attr('id').split("-"),
             name = $(this).attr('name'),
             type = searchParameters[0],
@@ -210,6 +202,7 @@ function populateAnimeResults(name, data){
     }
 
     $(".characterImageUrl").click(function(e) {
+      historyStack.push(ANIME);
       const searchParameters = $(this).attr('id').split("-"),
             name = $(this).attr('name'),
             type = searchParameters[0],
@@ -251,6 +244,8 @@ function populateSearchResults(data){
     }
 
     $(".imageUrl").click(function(e) {
+      historyStack.clearStack();
+      historyStack.push(SEARCH);
       const searchParameters = $(this).attr('id').split("-"),
             name = $(this).attr('name'),
             type = searchParameters[0],
@@ -274,8 +269,6 @@ function populateSearchResults(data){
           }
         });
     });
-  } else {
-    //empty
   }
 }
 
@@ -302,6 +295,7 @@ $(document).ready(function() {
         $("#currentUserText").append("Using ");
         $("#currentUserText").append(`<a id=setUser href=#>${usernameCookie}</a>`);
         $("#currentUserText").append("'s list");
+        generateUserList(usernameCookie);
     }else{
         $("#currentUserText").empty();
         $("#currentUserText").append("No Animelist Set. Click ");
@@ -332,6 +326,11 @@ $(document).ready(function() {
             setCookie(COOKIE_USERNAME, newName, 1);
             location.reload(true);
         }
+    });
+
+    $(".fa.fa-angle-left.fa-3x").click(function(e) {
+      historyStack.pop();
+      showContainer(historyStack.peek());
     });
 
     $("#searchBar").on('input', function() {
