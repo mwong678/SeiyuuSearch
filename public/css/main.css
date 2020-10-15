@@ -77,6 +77,7 @@ body {
 
 .fa.fa-angle-left.fa-3x {
   float: left;
+  cursor: pointer;
 }
 
 h2 {
@@ -115,6 +116,7 @@ h2 {
 img.imageUrl{
   width: 75px;
   height: 110px;
+  cursor: pointer;
 }
 
 /* SEARCH RESULTS CSS */
@@ -159,6 +161,7 @@ img.imageUrl{
 img.characterImageUrl{
   width: 75px;
   height: 110px;
+  cursor: pointer;
 }
 /* ANIME RESULTS CSS */
 
@@ -201,6 +204,7 @@ img.characterImageUrl{
 img.voiceActorImageUrl{
   width: 75px;
   height: 110px;
+  cursor: pointer;
 }
 
 

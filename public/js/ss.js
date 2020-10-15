@@ -91,6 +91,7 @@ function populateVoiceActorResults(name, data){
           voiceActingRoles = voiceActorResults.voice_acting_roles;
 
     showContainer(PERSON);
+    historyStack.push(PERSON);
     $("#personResultsList").empty();
     $("#personTitle").text(name);
     for (var x = 0;x < voiceActingRoles.length; x++){
@@ -131,6 +132,7 @@ function populateCharacterResults(name, data){
   if (characterResults != null) {
     const voiceActors = characterResults.voice_actors;
     showContainer(CHARACTER);
+    historyStack.push(CHARACTER);
     $("#characterResultsList").empty();
     $("#characterTitle").text(name);
     for (var x = 0;x < voiceActors.length; x++){
@@ -154,7 +156,6 @@ function populateCharacterResults(name, data){
     }
 
     $(".voiceActorImageUrl").click(function(e) {
-      historyStack.push(CHARACTER);
       const searchParameters = $(this).attr('id').split("-"),
             name = $(this).attr('name'),
             type = searchParameters[0],
@@ -178,6 +179,7 @@ function populateAnimeResults(name, data){
   if (animeResults != null) {
     const characters = animeResults.characters;
     showContainer(ANIME);
+    historyStack.push(ANIME);
     $("#animeResultsList").empty();
     $("#animeTitle").text(name);
     for (var x = 0;x < characters.length; x++){
@@ -202,7 +204,6 @@ function populateAnimeResults(name, data){
     }
 
     $(".characterImageUrl").click(function(e) {
-      historyStack.push(ANIME);
       const searchParameters = $(this).attr('id').split("-"),
             name = $(this).attr('name'),
             type = searchParameters[0],
