@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  div#characterContainer
+    div.titleDiv
+      h2#characterTitle= titleText
+    ul#characterResultsList
+      each person in findResults.voice_actors
+        li.characterResultRow
+          .characterResultDiv
+            img.voiceActorImageUrl(src=person.image_url id=`person-${person.mal_id}` name=`${person.name} (person)`)
+            .voiceActorInfoDiv
+              span.voiceActorImageName #{person.name}
+              span.voiceActorImageLanguage #{person.language}

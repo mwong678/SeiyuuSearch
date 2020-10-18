@@ -1,8 +1,8 @@
 const requestPromise = require('request-promise'),
       querystring = require("querystring");
 
-const //ENDPOINT = "http://172.31.21.133:9000/public/v3/", //"http://ec2-54-185-227-52.us-west-2.compute.amazonaws.com:9000/public/v3/",
-      ENDPOINT = "http://ec2-54-185-227-52.us-west-2.compute.amazonaws.com:9000/public/v3/",
+const ENDPOINT = "http://172.31.21.133:9000/public/v3/",
+      //ENDPOINT = "http://ec2-54-185-227-52.us-west-2.compute.amazonaws.com:9000/public/v3/",
       SEARCH = "search/",
       ANIME = "anime",
       PERSON = "person",
@@ -26,14 +26,23 @@ const search = async(query, type) => {
 };
 
 const find = async(type, mal_id) => {
-  const url = (type == ANIME) ? `${ENDPOINT}${type}/${mal_id}/characters_staff` : `${ENDPOINT}${type}/${mal_id}`;
-  const searchParameters = {
-        url: url,
-        json: true
-  };
+  var searchParameters = {
+                              url: `${ENDPOINT}${type}/${mal_id}`,
+                              json: true
+                         };
 
   try {
-    var results =  (await requestPromise.get(searchParameters));
+    const findResults = (await requestPromise.get(searchParameters));
+    if (type == ANIME){
+      searchParameters = {
+                              url: `${ENDPOINT}${type}/${mal_id}/characters_staff`,
+                              json: true
+                         };
+      const animeResults = (await requestPromise.get(searchParameters))
+      return {name: findResults.title, results: animeResults};
+    } else {
+      return {name: findResults.name, results: findResults};
+    }
     return results;
   } catch(e) {
     if (e.statusCode != 404){

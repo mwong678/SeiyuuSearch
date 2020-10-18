@@ -5,7 +5,7 @@ const ANIME = "anime",
       PERSON = "person",
       CHARACTER = "character";
 
-const search = async (req, res) => {
+const search = async (req, res, next) => {
     const results = [],
           query = req.body.query,
           encodedQuery = encodeURIComponent(req.body.query),
@@ -42,21 +42,14 @@ const search = async (req, res) => {
     res.send({result: tools.sort(query, results)});
 }
 
-const find = async (req, res) => {
+const find = async (req, res, next) => {
     const type = req.params.type,
           mal_id = req.params.mal_id;
 
     const results = await rest.find(type, mal_id);
-
-    switch (type){
-      case ANIME:
-        break;
-      case CHARACTER:
-        break;
-      default:
-        break;
-    }
-    res.send({result: results});
+    req.findResults = results.results;
+    req.title = results.name;
+    return next();
 };
 
 const animelist = async (req, res) => {
