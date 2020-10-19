@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div#personContainer
+    div.titleDiv
+      h2#personTitle= titleText
+    ul#personResultsList
+      each role in findResults.voice_acting_roles
+        li.personResultRow(id=role.anime.mal_id)
+          .personResultDiv
+            .voiceActorPictureDiv
+              img.animeCharacterImageUrl(src=role.anime.image_url)
+            .voiceActorTextDiv
+              span.voiceActorAnimeImageName #{role.anime.name}
+              span.voiceActorCharacterImageName #{role.character.name}
+            .voiceActorPictureDiv
+              img.animeCharacterImageUrl(src=role.character.image_url)

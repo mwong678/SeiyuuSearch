@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  div#animeContainer
+    div.titleDiv
+      h2#animeTitle= titleText
+    ul#animeResultsList
+      each character in findResults.characters
+        li.animeResultRow
+          .animeResultDiv
+            img.characterImageUrl(src=character.image_url id=`character-${character.mal_id}` name=`${character.name} (character)`)
+            .characterInfoDiv
+              span.characterImageName #{character.name}
+              span.characterImageRole #{character.role} Character
+            
