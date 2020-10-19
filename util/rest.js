@@ -1,8 +1,8 @@
 const requestPromise = require('request-promise'),
       querystring = require("querystring");
 
-const ENDPOINT = "http://172.31.21.133:9000/public/v3/",
-      //ENDPOINT = "http://ec2-54-185-227-52.us-west-2.compute.amazonaws.com:9000/public/v3/",
+const //ENDPOINT = "http://172.31.21.133:9000/public/v3/",
+      ENDPOINT = "http://ec2-54-185-227-52.us-west-2.compute.amazonaws.com:9000/public/v3/",
       SEARCH = "search/",
       ANIME = "anime",
       PERSON = "person",
