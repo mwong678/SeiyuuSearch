@@ -47,8 +47,15 @@ const find = async (req, res, next) => {
           mal_id = req.params.mal_id;
 
     const results = await rest.find(type, mal_id);
-    req.findResults = results.results;
+
+    if (type == PERSON){
+      req.findResults = tools.sortByWatched(results.results.voice_acting_roles, req.session.animelist);
+    } else {
+      req.findResults = results.results;
+    }
+
     req.title = results.name;
+
     return next();
 };
 
@@ -57,8 +64,9 @@ const animelist = async (req, res) => {
     start = new Date().getTime();
     const results = await rest.animelist(username);
     console.log(`Time elapsed: ${new Date().getTime() - start}`);
-    res.send({result: results});
+    return results;
 };
+
 
 
 module.exports = {

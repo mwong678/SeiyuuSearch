@@ -5,7 +5,7 @@ block content
     div.titleDiv
       h2#personTitle= titleText
     ul#personResultsList
-      each role in findResults.voice_acting_roles
+      each role in findResults
         li.personResultRow(id=role.anime.mal_id)
           .personResultDiv
             .voiceActorPictureDiv

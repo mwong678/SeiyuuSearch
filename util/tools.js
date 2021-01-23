@@ -32,7 +32,29 @@ function sort(query, array){
     });
 }
 
+function sortByWatched(voiceActorRoles, userList){
+  return voiceActorRoles.sort(function(a, b){
+     const malIdA = a.anime.mal_id,
+           malIdB = b.anime.mal_id,
+           malNameA = a.anime.name,
+           malNameB = b.anime.name;
+
+     if (userList[malIdA] && userList[malIdA] != 6){
+       if (userList[malIdB] && userList[malIdB] != 6){
+         return malNameA < malNameB;
+       } else {
+         return -1;
+       }
+     } else if (userList[malIdB] && userList[malIdB] != 6){
+       return 1;
+     } else {
+       return malNameA < malNameB;
+     }
+  });
+}
+
 module.exports = {
     sort,
+    sortByWatched,
     normalizeName
 }
