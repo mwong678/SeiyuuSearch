@@ -256,6 +256,7 @@ img.voiceActorImageUrl{
 img.animeCharacterImageUrl{
   width: 60px;
   height: 88px;
+  cursor: pointer;
 }
 /* 42, 62 */
 /* 60, 88 */

@@ -9,7 +9,7 @@ block content
         li.personResultRow(id=role.anime.mal_id)
           .personResultDiv
             .voiceActorPictureDiv
-              img.animeCharacterImageUrl(src=role.anime.image_url)
+              img.animeCharacterImageUrl(src=role.anime.image_url id=`anime-${role.anime.mal_id}`)
             .voiceActorTextDiv
               span.voiceActorAnimeImageName #{role.anime.name}
               span.voiceActorCharacterImageName #{role.character.name}

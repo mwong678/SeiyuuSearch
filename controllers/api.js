@@ -50,6 +50,7 @@ const find = async (req, res, next) => {
 
     if (type == PERSON){
       req.findResults = tools.sortByWatched(results.results.voice_acting_roles, req.session.animelist);
+      //console.log(req.findResults)
     } else {
       req.findResults = results.results;
     }

@@ -39,6 +39,10 @@ function sortByWatched(voiceActorRoles, userList){
            malNameA = a.anime.name,
            malNameB = b.anime.name;
 
+    if (!userList){
+      return malNameA < malNameB;
+    }
+
      if (userList[malIdA] && userList[malIdA] != 6){
        if (userList[malIdB] && userList[malIdB] != 6){
          return malNameA < malNameB;

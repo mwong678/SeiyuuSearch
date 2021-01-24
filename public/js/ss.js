@@ -44,6 +44,7 @@ async function generateUserList(username){
         }
       });
   }
+  //else set session backend?
 }
 
 function highlightRoles(){
@@ -165,7 +166,8 @@ $(document).ready(function() {
     $("#searchBar").on('click', function(){ redirect("/search") });
     $("#headerDiv").on('click', function(){ redirect("/") } );
 
-    $(".characterImageUrl, .voiceActorImageUrl").click(function(e) {
+//, .animeCharacterImageUrl
+    $(".characterImageUrl, .voiceActorImageUrl, .animeCharacterImageUrl").click(function(e) {
       const searchParameters = $(this).attr('id').split("-"),
             name = $(this).attr('name'),
             type = searchParameters[0],
